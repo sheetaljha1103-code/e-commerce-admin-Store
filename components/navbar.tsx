@@ -2,9 +2,15 @@ import Container from "./ui/container";
 import Link from "next/link";
 import MainNav from "./ui/main-nav";
 import getCategories from "@/actions/get-categories";
+import NavBarActions from "@/components/ui/navbar-actions"
+
+export const revalidate = 0
+
 
 const Navbar = async () => {
   const categories = await getCategories();
+
+  
 
   return (
     <div className="border-b">
@@ -15,6 +21,7 @@ const Navbar = async () => {
           </Link>
 
           <MainNav data={categories} />
+          <NavBarActions></NavBarActions>
         </div>
       </Container>
     </div>
