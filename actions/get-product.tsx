@@ -23,15 +23,23 @@ const getProducts = async (
     },
   });
 
-  const res = await fetch(url);
+  console.log("NEXT_PUBLIC_API_URL:", process.env.NEXT_PUBLIC_API_URL);
+  console.log("FETCH URL:", url);
 
-  if (!res.ok) {
-    throw new Error(
-      `Failed to fetch products: ${res.status}`
-    );
+  try {
+    const res = await fetch(url);
+
+    console.log("STATUS:", res.status);
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch products: ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("FETCH ERROR:", error);
+    throw error;
   }
-
-  return res.json();
 };
 
 export default getProducts;
