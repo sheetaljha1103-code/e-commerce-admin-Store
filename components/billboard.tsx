@@ -19,7 +19,7 @@ const Billboard = ({ data }: BillboardProps) => {
       
     >
       <div className="h-[500px] md:h-[400px] flex items-center justify-center">
-        <p className="text-3xl sm:text-5xl lg:text-6xl font-bold text-black">
+        <p className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white">
           {data.label}
         </p>
       </div>
