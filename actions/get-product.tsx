@@ -1,23 +1,43 @@
 import { Product } from "@/public/types";
 
-const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
-
 const getProduct = async (
   id: string
 ): Promise<Product> => {
-  const res = await fetch(`${URL}/${id}`, {
+
+  const storeId = process.env.NEXT_PUBLIC_STORE_ID;
+  
+const URL = `${process.env.NEXT_PUBLIC_API_URL}/products`;
+
+
+  const fetchUrl = `${URL}/${id}`;
+
+
+  // console.log("PRODUCT URL =", fetchUrl);
+
+
+  const res = await fetch(fetchUrl, {
     cache: "no-store",
   });
-  console.log('product url', `${URL}/${id}`)
+
+
+  // console.log("PRODUCT STATUS =", res.status);
+
+
+  const responseText = await res.text();
+
+  // console.log("PRODUCT RESPONSE =", responseText);
+
+
   if (!res.ok) {
-    throw new Error(`Failed to fetch product: ${res.status}`);
+    throw new Error(
+      `Failed to fetch product: ${res.status}`
+    );
   }
 
-  const data = await res.json();
 
-  console.log("PRODUCT DATA =", JSON.stringify(data, null, 2));
+  return JSON.parse(responseText);
 
-  return data;
 };
+
 
 export default getProduct;

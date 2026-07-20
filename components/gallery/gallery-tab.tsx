@@ -15,15 +15,16 @@ const GalleryTab: React.FC<GalleryTabProps> = ({
   return (
     <Tab className="relative flex aspect-square cursor-pointer items-center justify-center rounded-md bg-white">
       {({ selected }) => (
-        <div className="w-full h-full">
-          <span className="absolute h-full w-full aspect-square inset-0 overflow-hidden rounded-md">
+        <>
+          <div className="relative h-full w-full aspect-square overflow-hidden rounded-md">
             <Image
               fill
+              sizes="100px"
               src={image.url}
-              alt=""
+              alt="Product image"
               className="object-cover object-center"
             />
-          </span>
+          </div>
 
           <span
             className={cn(
@@ -33,11 +34,10 @@ const GalleryTab: React.FC<GalleryTabProps> = ({
                 : "ring-transparent"
             )}
           />
-        </div>
+        </>
       )}
     </Tab>
   );
 };
-
 
 export default GalleryTab;

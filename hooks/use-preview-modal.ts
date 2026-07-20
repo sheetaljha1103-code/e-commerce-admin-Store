@@ -1,19 +1,25 @@
-import {create} from "zustand";
+import { create } from "zustand";
 import { Product } from "@/public/types";
 
-
 interface PreviewModalStore {
-    isOpen : Boolean;
-    data? : Product;
-    onOPen: (data:Product) => void;
-    onClose: () => void
+  isOpen: boolean;
+  data?: Product;
+  onOpen: (data: Product) => void;
+  onClose: () => void;
 }
 
-const usePreviewModel = create<PreviewModalStore>((set) => ({
-    isOpen : false,
-    data : undefined,
-    onOPen : (data:Product) => set({data, isOpen: true}),
-     onClose : () => set({isOpen: false})
-}))
+const usePreviewModal = create<PreviewModalStore>((set) => ({
+  isOpen: false,
+  data: undefined,
+  onOpen: (data: Product) =>
+    set({
+      data,
+      isOpen: true,
+    }),
+  onClose: () =>
+    set({
+      isOpen: false,
+    }),
+}));
 
-export default usePreviewModel
+export default usePreviewModal;
